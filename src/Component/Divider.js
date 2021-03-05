@@ -11,7 +11,7 @@ export default (props) => {
 const _styles = ({small, medium, large, backgroundColor}) => {
   return ScaledSheet.create({
     div: {
-      height: small ? '10@ms' : medium ? '20@ms' : large ? '30@ms' : '15@ms',
+      height: small ? '4@ms' : medium ? '10@ms' : large ? '35@ms' : '15@ms',
       backgroundColor: backgroundColor ? backgroundColor : null,
     },
   });

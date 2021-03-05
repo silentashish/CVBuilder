@@ -36,8 +36,10 @@ const InputPart = ({
   placeholder,
   multiline,
   keyboardType,
+  half,
+  numberOfLines,
 }) => (
-  <View style={styles.inputForm}>
+  <View style={[styles.inputForm, half && {width: '48%'}]}>
     <Text style={styles.title}>{title}</Text>
     <Divider medium />
     <TextInput
@@ -48,6 +50,7 @@ const InputPart = ({
       placeholderTextColor={'gray'}
       multiline={multiline}
       keyboardType={keyboardType}
+      numberOfLines={numberOfLines}
     />
   </View>
 );
@@ -131,30 +134,18 @@ const InputForm = (props) => {
       <ScrollView>
         <View>
           <Divider medium />
-
-          <TouchableOpacity style={styles.inputForm} onPress={SelectUserImage}>
-            <Text style={styles.title}>User Image</Text>
-            <Divider medium />
-            {/* <View style={styles.inputTxt}> */}
-            <Image
-              style={{height: 150, width: 150, borderRadius: 5}}
-              source={{uri: userImage}}
-            />
-            {/* </View> */}
-          </TouchableOpacity>
-
-          <Divider medium />
-
-          <TouchableOpacity style={styles.inputForm} onPress={SelectUserImage}>
-            <Text style={styles.title}>School Image</Text>
-            <Divider medium />
-            {/* <View style={styles.inputTxt}> */}
-            <Image
-              style={{height: 150, width: 150, borderRadius: 5}}
-              source={{uri: schoolImage}}
-            />
-            {/* </View> */}
-          </TouchableOpacity>
+          <View style={styles.imgFile}>
+            <TouchableOpacity onPress={SelectUserImage}>
+              <Text style={styles.titleCenter}>User Image</Text>
+              <Divider medium />
+              {/* <View style={styles.inputTxt}> */}
+              <Image
+                style={{height: 150, width: 150, borderRadius: 5}}
+                source={{uri: userImage}}
+              />
+              {/* </View> */}
+            </TouchableOpacity>
+          </View>
 
           <Divider medium />
 
@@ -175,6 +166,23 @@ const InputForm = (props) => {
 
           <View>
             <InputPart
+              value={name}
+              onChangeText={(text) => {
+                setName(text);
+                setError('');
+              }}
+              title="Details"
+              placeholder="Enter Details"
+              color="gray"
+              numberOfLines={4}
+              multiline
+            />
+          </View>
+
+          <Divider large />
+
+          <View>
+            <InputPart
               value={schoolName}
               onChangeText={(text) => {
                 setSchoolName(text);
@@ -188,6 +196,173 @@ const InputForm = (props) => {
           </View>
 
           <Divider medium />
+
+          <View>
+            <InputPart
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="Enter School Degree Name"
+              placeholder="Enter Degree Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View style={styles.dateInput}>
+            <InputPart
+              half
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="School Name"
+              placeholder="Enter School Name"
+              color="gray"
+              multiline
+            />
+            <InputPart
+              half
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="School Name"
+              placeholder="Enter School Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider large />
+
+          <View>
+            <InputPart
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="School Name"
+              placeholder="Enter School Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View>
+            <InputPart
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="Enter School Degree Name"
+              placeholder="Enter Degree Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View style={styles.dateInput}>
+            <InputPart
+              half
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="School Name"
+              placeholder="Enter School Name"
+              color="gray"
+              multiline
+            />
+            <InputPart
+              half
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="School Name"
+              placeholder="Enter School Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider large />
+
+          <View>
+            <InputPart
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="School Name"
+              placeholder="Enter School Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View>
+            <InputPart
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="Enter School Degree Name"
+              placeholder="Enter Degree Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View style={styles.dateInput}>
+            <InputPart
+              half
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="School Name"
+              placeholder="Enter School Name"
+              color="gray"
+              multiline
+            />
+            <InputPart
+              half
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="School Name"
+              placeholder="Enter School Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider large />
 
           <View>
             <InputPart
@@ -338,6 +513,11 @@ const styles = ScaledSheet.create({
     flex: 1,
     backgroundColor: primaryColor,
   },
+  imgFile: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   inputForm: {
     width: '90%',
     alignSelf: 'center',
@@ -346,6 +526,12 @@ const styles = ScaledSheet.create({
     fontWeight: 'bold',
     color: '#fcf8e8',
     fontSize: 18,
+  },
+  titleCenter: {
+    fontWeight: 'bold',
+    color: '#fcf8e8',
+    fontSize: 18,
+    textAlign: 'center',
   },
   inputTxt: {
     height: 50,
@@ -371,6 +557,12 @@ const styles = ScaledSheet.create({
   },
   err: {
     color: 'red',
+  },
+  dateInput: {
+    flexDirection: 'row',
+    width: '90%',
+    alignSelf: 'center',
+    justifyContent: 'space-between',
   },
 });
 

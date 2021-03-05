@@ -7,3 +7,4 @@ export * from './buttonCard';
 export * from './Text';
 export * from './RoundAvatar';
 export * from './GlobalTheme';
+export * from './HomeGrid';

@@ -1,12 +1,16 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {AppHeader} from '../../Component';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {AppHeader, HomeGrid} from '../../Component';
 import {primaryColor} from '../../Utils';
 
 const ListingPage = () => {
   return (
     <View style={styles.container}>
       <AppHeader title="Home" />
+      <ScrollView>
+        <HomeGrid />
+        <HomeGrid />
+      </ScrollView>
     </View>
   );
 };
