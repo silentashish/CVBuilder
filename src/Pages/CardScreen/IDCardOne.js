@@ -30,7 +30,6 @@ const IDCardOne = ({route, loading}) => {
     color,
   } = route.params;
   const styles = _styles({color});
-  const txt = `https://edigitalnepal.com/smsbeta/apis/v3/common/webview/student/profile?id=${userId}&teamId=${teamId}`;
 
   const [saved, setSaved] = useState(false);
   const viewRef = React.useRef();

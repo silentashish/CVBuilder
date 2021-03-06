@@ -55,6 +55,35 @@ const InputPart = ({
   </View>
 );
 
+const DatePicker = ({title, style, value, onChangeDate, minimumDate, half}) => {
+  const [datePickerVisible, setShowDatePicker] = useState(false);
+  const hideDayPicker = () => {
+    setShowDatePicker(false);
+  };
+  const showDayPicker = () => {
+    setShowDatePicker(true);
+  };
+  return (
+    <TouchableOpacity
+      style={[styles.inputForm, half && {width: '48%'}]}
+      onPress={showDayPicker}>
+      <Text style={styles.title}>{title}</Text>
+      <Divider medium />
+      <DateTimePickerModal
+        isVisible={datePickerVisible}
+        mode="date"
+        date={value}
+        onConfirm={onChangeDate}
+        onCancel={hideDayPicker}
+        minimumDate={minimumDate}
+      />
+      <View style={[styles.inputTxt]}>
+        <Text style={styles.date}>{formatDate(value)}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
 const InputForm = (props) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -99,11 +128,38 @@ const InputForm = (props) => {
   };
 
   const [name, setName] = useState('');
+  const [bio, setBio] = useState('');
+  const [positionDetails, setPositionDetails] = useState('');
+  const [userAddress, setUserAddress] = useState('');
+  const [website, setWebsite] = useState('');
+  const [contactNumber, setContactNumber] = useState('');
+
+  const [facebookLink, setFacebookLink] = useState('');
+  const [twitterLink, setTwitterLink] = useState('');
+  const [linkedinLink, setLinkedinLink] = useState('');
+
   const [schoolName, setSchoolName] = useState('');
-  const [schoolEmail, setSchoolEmail] = useState('');
+  const [schoolDegreeName, setSchoolDregreeName] = useState('');
+  const [schoolStartingDate, setSchoolStartingDate] = useState(new Date());
+  const [schoolEndingDate, setSchoolEndingDate] = useState(new Date());
+
+  const [highSchoolName, setHighSchoolName] = useState('');
+  const [highSchoolDegreeName, setHighSchoolDregreeName] = useState('');
+  const [highSchoolStartingDate, setHighSchoolStartingDate] = useState(
+    new Date(),
+  );
+  const [highSchoolEndingDate, setHighSchoolEndingDate] = useState(new Date());
+
+  const [universityName, setUniversityName] = useState('');
+  const [universityDegreeName, setUniversityDregreeName] = useState('');
+  const [universityStartingDate, setUniversityStartingDate] = useState(
+    new Date(),
+  );
+  const [universityEndingDate, setUniversityEndingDate] = useState(new Date());
+
   const [schoolAddress, setSchoolAddress] = useState('');
   const [grade, setGrade] = useState('');
-  const [contactNumber, setContactNumber] = useState('');
+
   const [dob, setDOB] = useState(new Date());
   const [expiryDate, setExpiryDate] = useState(new Date());
 
@@ -166,252 +222,64 @@ const InputForm = (props) => {
 
           <View>
             <InputPart
-              value={name}
+              value={bio}
               onChangeText={(text) => {
-                setName(text);
+                setBio(text);
                 setError('');
               }}
-              title="Details"
+              title="Bio"
               placeholder="Enter Details"
+              color="gray"
+            />
+          </View>
+
+          <Divider medium />
+
+          <View>
+            <InputPart
+              value={positionDetails}
+              onChangeText={(text) => {
+                setPositionDetails(text);
+                setError('');
+              }}
+              title="Position Details"
+              placeholder="Enter Position Name"
+              color="gray"
+            />
+          </View>
+
+          <Divider medium />
+
+          <View>
+            <InputPart
+              value={userAddress}
+              onChangeText={(text) => {
+                setUserAddress(text);
+                setError('');
+              }}
+              title="Address"
+              placeholder="Enter Address"
               color="gray"
               numberOfLines={4}
               multiline
             />
           </View>
-
-          <Divider large />
-
+          <Divider medium />
           <View>
             <InputPart
-              value={schoolName}
+              value={name}
               onChangeText={(text) => {
-                setSchoolName(text);
+                setName(text);
                 setError('');
               }}
-              title="School Name"
-              placeholder="Enter School Name"
+              title="Email Address"
+              placeholder="Enter Email Address"
               color="gray"
+              numberOfLines={4}
               multiline
             />
           </View>
-
           <Divider medium />
-
-          <View>
-            <InputPart
-              value={schoolName}
-              onChangeText={(text) => {
-                setSchoolName(text);
-                setError('');
-              }}
-              title="Enter School Degree Name"
-              placeholder="Enter Degree Name"
-              color="gray"
-              multiline
-            />
-          </View>
-
-          <Divider medium />
-
-          <View style={styles.dateInput}>
-            <InputPart
-              half
-              value={schoolName}
-              onChangeText={(text) => {
-                setSchoolName(text);
-                setError('');
-              }}
-              title="School Name"
-              placeholder="Enter School Name"
-              color="gray"
-              multiline
-            />
-            <InputPart
-              half
-              value={schoolName}
-              onChangeText={(text) => {
-                setSchoolName(text);
-                setError('');
-              }}
-              title="School Name"
-              placeholder="Enter School Name"
-              color="gray"
-              multiline
-            />
-          </View>
-
-          <Divider large />
-
-          <View>
-            <InputPart
-              value={schoolName}
-              onChangeText={(text) => {
-                setSchoolName(text);
-                setError('');
-              }}
-              title="School Name"
-              placeholder="Enter School Name"
-              color="gray"
-              multiline
-            />
-          </View>
-
-          <Divider medium />
-
-          <View>
-            <InputPart
-              value={schoolName}
-              onChangeText={(text) => {
-                setSchoolName(text);
-                setError('');
-              }}
-              title="Enter School Degree Name"
-              placeholder="Enter Degree Name"
-              color="gray"
-              multiline
-            />
-          </View>
-
-          <Divider medium />
-
-          <View style={styles.dateInput}>
-            <InputPart
-              half
-              value={schoolName}
-              onChangeText={(text) => {
-                setSchoolName(text);
-                setError('');
-              }}
-              title="School Name"
-              placeholder="Enter School Name"
-              color="gray"
-              multiline
-            />
-            <InputPart
-              half
-              value={schoolName}
-              onChangeText={(text) => {
-                setSchoolName(text);
-                setError('');
-              }}
-              title="School Name"
-              placeholder="Enter School Name"
-              color="gray"
-              multiline
-            />
-          </View>
-
-          <Divider large />
-
-          <View>
-            <InputPart
-              value={schoolName}
-              onChangeText={(text) => {
-                setSchoolName(text);
-                setError('');
-              }}
-              title="School Name"
-              placeholder="Enter School Name"
-              color="gray"
-              multiline
-            />
-          </View>
-
-          <Divider medium />
-
-          <View>
-            <InputPart
-              value={schoolName}
-              onChangeText={(text) => {
-                setSchoolName(text);
-                setError('');
-              }}
-              title="Enter School Degree Name"
-              placeholder="Enter Degree Name"
-              color="gray"
-              multiline
-            />
-          </View>
-
-          <Divider medium />
-
-          <View style={styles.dateInput}>
-            <InputPart
-              half
-              value={schoolName}
-              onChangeText={(text) => {
-                setSchoolName(text);
-                setError('');
-              }}
-              title="School Name"
-              placeholder="Enter School Name"
-              color="gray"
-              multiline
-            />
-            <InputPart
-              half
-              value={schoolName}
-              onChangeText={(text) => {
-                setSchoolName(text);
-                setError('');
-              }}
-              title="School Name"
-              placeholder="Enter School Name"
-              color="gray"
-              multiline
-            />
-          </View>
-
-          <Divider large />
-
-          <View>
-            <InputPart
-              value={schoolEmail}
-              onChangeText={(text) => {
-                setSchoolEmail(text);
-                setError('');
-              }}
-              title="School Email"
-              placeholder="Enter School Email"
-              color="gray"
-              multiline
-            />
-          </View>
-
-          <Divider medium />
-
-          <View>
-            <InputPart
-              value={schoolAddress}
-              onChangeText={(text) => {
-                setSchoolAddress(text);
-                setError('');
-              }}
-              title="School Address"
-              placeholder="Enter School Address"
-              color="gray"
-              multiline
-            />
-          </View>
-
-          <Divider medium />
-
-          <View>
-            <InputPart
-              value={grade}
-              onChangeText={(text) => {
-                setGrade(text);
-                setError('');
-              }}
-              title="Grade"
-              placeholder="Enter Grade"
-              color="gray"
-              multiline
-            />
-          </View>
-
-          <Divider medium />
-
           <View>
             <InputPart
               value={contactNumber}
@@ -422,48 +290,373 @@ const InputForm = (props) => {
               title="Contact Number"
               placeholder="Enter Contact Number"
               color="gray"
+              numberOfLines={4}
               multiline
-              keyboardType={'numeric'}
             />
           </View>
 
           <Divider medium />
 
-          <TouchableOpacity style={styles.inputForm} onPress={showDatePicker}>
-            <Text style={styles.title}>Date of Birth</Text>
-            <Divider medium />
-            <DateTimePickerModal
-              isVisible={isDatePickerVisible}
-              mode="date"
-              date={deadline}
-              onConfirm={handleConfirm}
-              onCancel={hideDatePicker}
-              minimumDate={new Date()}
+          <View>
+            <InputPart
+              value={website}
+              onChangeText={(text) => {
+                setWebsite(text);
+                setError('');
+              }}
+              title="Website"
+              placeholder="Enter Email Address"
+              color="gray"
+              numberOfLines={4}
+              multiline
             />
-            <View style={styles.inputTxt}>
-              <Text style={styles.date}>{formatDate(dob)}</Text>
-            </View>
-          </TouchableOpacity>
+          </View>
+
+          <Divider large />
+          {/* social media input details from here */}
+          <View>
+            <InputPart
+              value={facebookLink}
+              onChangeText={(text) => {
+                setFacebookLink(text);
+                setError('');
+              }}
+              title="Facebook Link"
+              placeholder="Enter Facebook Link"
+              color="gray"
+            />
+          </View>
+          <Divider medium />
+          <View>
+            <InputPart
+              value={twitterLink}
+              onChangeText={(text) => {
+                setTwitterLink(text);
+                setError('');
+              }}
+              title="Twitter Link"
+              placeholder="Enter Twitter Link"
+              color="gray"
+            />
+          </View>
+          <Divider medium />
+          <View>
+            <InputPart
+              value={linkedinLink}
+              onChangeText={(text) => {
+                setLinkedinLink(text);
+                setError('');
+              }}
+              title="Linkedin Link"
+              placeholder="Enter Linkedin Link"
+              color="gray"
+            />
+          </View>
+
+          <Divider large />
+          {/* primary school details here */}
+          <View>
+            <InputPart
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="School Name"
+              placeholder="Enter School Name"
+              color="gray"
+              multiline
+            />
+          </View>
 
           <Divider medium />
 
-          <TouchableOpacity style={styles.inputForm} onPress={showDatePicker}>
-            <Text style={styles.title}>Expiry Date</Text>
-            <Divider medium />
-            <DateTimePickerModal
-              isVisible={isDatePickerVisible}
-              mode="date"
-              date={deadline}
-              onConfirm={handleConfirmNxt}
-              onCancel={hideDatePicker}
-              minimumDate={new Date()}
+          <View>
+            <InputPart
+              value={schoolDegreeName}
+              onChangeText={(text) => {
+                setSchoolDregreeName(text);
+                setError('');
+              }}
+              title="Enter School Degree Name"
+              placeholder="Enter Degree Name"
+              color="gray"
+              multiline
             />
-            <View style={styles.inputTxt}>
-              <Text style={styles.date}>{formatDate(expiryDate)}</Text>
-            </View>
-          </TouchableOpacity>
+          </View>
 
           <Divider medium />
+
+          <View style={styles.dateInput}>
+            <DatePicker
+              title="Starting Year"
+              value={schoolStartingDate}
+              half
+              onChangeDate={(value) => {
+                setSchoolStartingDate(value);
+              }}
+            />
+            <DatePicker
+              title="Ending Year"
+              value={schoolEndingDate}
+              half
+              onChangeDate={(value) => {
+                setSchoolEndingDate(value);
+              }}
+            />
+          </View>
+
+          <Divider large />
+
+          <View>
+            <InputPart
+              value={highSchoolName}
+              onChangeText={(text) => {
+                setHighSchoolName(text);
+                setError('');
+              }}
+              title="High School Name"
+              placeholder="Enter High School Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View>
+            <InputPart
+              value={highSchoolDegreeName}
+              onChangeText={(text) => {
+                setHighSchoolDregreeName(text);
+                setError('');
+              }}
+              title="Enter High School Degree Name"
+              placeholder="Enter High Degree Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View style={styles.dateInput}>
+            <DatePicker
+              title="Starting Year"
+              value={highSchoolStartingDate}
+              half
+              onChangeDate={(value) => {
+                setHighSchoolStartingDate(value);
+              }}
+            />
+            <DatePicker
+              title="Ending Year"
+              value={highSchoolEndingDate}
+              half
+              onChangeDate={(value) => {
+                setHighSchoolEndingDate(value);
+              }}
+            />
+          </View>
+
+          <Divider large />
+
+          <View>
+            <InputPart
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="University Name"
+              placeholder="Enter University Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View>
+            <InputPart
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="University Degree Name"
+              placeholder="Enter University Degree Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View style={styles.dateInput}>
+            <DatePicker
+              title="Starting Year"
+              value={new Date()}
+              half
+              onChangeDate={(value) => {
+                console.log(value);
+              }}
+            />
+            <DatePicker
+              title="Ending Year"
+              value={new Date()}
+              half
+              onChangeDate={(value) => {
+                console.log(value);
+              }}
+            />
+          </View>
+
+          <Divider large />
+
+          <View style={styles.inputForm}>
+            <Text style={styles.title}>Experience One</Text>
+          </View>
+          <Divider divider />
+          <View>
+            <InputPart
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="Company Name"
+              placeholder="Enter Company Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View>
+            <InputPart
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="Position Name"
+              placeholder="Enter Position Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View style={styles.dateInput}>
+            <DatePicker
+              title="Starting Year"
+              value={new Date()}
+              half
+              onChangeDate={(value) => {
+                console.log(value);
+              }}
+            />
+            <DatePicker
+              title="Ending Year"
+              value={new Date()}
+              half
+              onChangeDate={(value) => {
+                console.log(value);
+              }}
+            />
+          </View>
+
+          <Divider large />
+
+          <View style={styles.inputForm}>
+            <Text style={styles.title}>Experience Two</Text>
+          </View>
+          <Divider divider />
+          <View>
+            <InputPart
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="Company Name"
+              placeholder="Enter Company Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View>
+            <InputPart
+              value={schoolName}
+              onChangeText={(text) => {
+                setSchoolName(text);
+                setError('');
+              }}
+              title="Position Name"
+              placeholder="Enter Position Name"
+              color="gray"
+              multiline
+            />
+          </View>
+
+          <Divider medium />
+
+          <View style={styles.dateInput}>
+            <DatePicker
+              title="Starting Year"
+              value={new Date()}
+              half
+              onChangeDate={(value) => {
+                console.log(value);
+              }}
+            />
+            <DatePicker
+              title="Ending Year"
+              value={new Date()}
+              half
+              onChangeDate={(value) => {
+                console.log(value);
+              }}
+            />
+          </View>
+
+          <Divider large />
+
+          <View>
+            <InputPart
+              value={name}
+              onChangeText={(text) => {
+                setName(text);
+                setError('');
+              }}
+              title="Skills"
+              placeholder="Enter Details"
+              color="gray"
+            />
+          </View>
+
+          <Divider medium />
+
+          <View>
+            <InputPart
+              value={name}
+              onChangeText={(text) => {
+                setName(text);
+                setError('');
+              }}
+              title="Interests"
+              placeholder="Enter Interests"
+              color="gray"
+            />
+          </View>
+
+          <Divider large />
 
           <TouchableOpacity style={styles.inputForm} onPress={showDatePicker}>
             <Text style={styles.title}>Color</Text>
