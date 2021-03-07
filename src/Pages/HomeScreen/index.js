@@ -16,11 +16,7 @@ const HomeScreen = () => {
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
-          if (route.name === 'About') {
-            iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
-          } else if (route.name === 'Create') {
+          if (route.name === 'Create') {
             iconName = focused ? 'create' : 'create-outline';
           } else if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
@@ -36,7 +32,6 @@ const HomeScreen = () => {
       }}>
       <Tab.Screen name="Home" component={ListingPage} />
       <Tab.Screen name="Create" component={InputForm} />
-      <Tab.Screen name="About" component={InfoScreen} />
     </Tab.Navigator>
   );
 };

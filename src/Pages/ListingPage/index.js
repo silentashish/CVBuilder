@@ -40,6 +40,9 @@ const styles = StyleSheet.create({
   },
   txt: {
     color: 'white',
+    textAlign: 'center',
+    alignSelf: 'center',
+    marginTop: 40,
   },
 });
 
