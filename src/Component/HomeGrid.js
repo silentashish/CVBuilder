@@ -3,18 +3,17 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import {Divider} from '.';
 import {primaryColor} from '../Utils';
 
-const HomeGrid = () => {
+const HomeGrid = (props) => {
+  const {userImage, name, bio} = props;
+
   return (
     <View style={styles.container}>
       <View style={styles.information}>
-        <Text style={styles.heading}>Ashish Check Message</Text>
+        <Text style={styles.heading}>{name}</Text>
         <Divider small />
-        <Text style={styles.details}>Ashish Check Message</Text>
+        <Text style={styles.details}>{bio}</Text>
       </View>
-      <Image
-        source={require('../assets/Images/background.jpg')}
-        style={styles.image}
-      />
+      <Image source={{uri: userImage}} style={styles.image} />
     </View>
   );
 };
@@ -30,6 +29,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flexDirection: 'row',
     overflow: 'hidden',
+    justifyContent: 'space-between',
   },
   heading: {
     fontWeight: 'bold',

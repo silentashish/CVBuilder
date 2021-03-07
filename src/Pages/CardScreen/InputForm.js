@@ -73,7 +73,10 @@ const DatePicker = ({title, style, value, onChangeDate, minimumDate, half}) => {
         isVisible={datePickerVisible}
         mode="date"
         date={value}
-        onConfirm={onChangeDate}
+        onConfirm={(date) => {
+          onChangeDate(date);
+          hideDayPicker();
+        }}
         onCancel={hideDayPicker}
         minimumDate={minimumDate}
       />
@@ -85,45 +88,51 @@ const DatePicker = ({title, style, value, onChangeDate, minimumDate, half}) => {
 };
 
 const InputForm = (props) => {
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
 
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
-
-  const handleConfirm = (date) => {
-    hideDatePicker();
-    setDOB(date);
-    setError('');
-  };
-
-  const handleConfirmNxt = (date) => {
-    hideDatePicker();
-    setExpiryDate(date);
-    setError('');
-  };
-
   const [iconName, setIconName] = useState('red');
 
-  const createResolution = async () => {
-    props.navigation.navigate('IDCard', {
+  const createResolution = () => {
+    props.navigation.navigate('CVScreen', {
       teamId: '11',
       userId: '11',
-      schoolLogo: schoolImage,
+      userImage,
       name,
+      bio,
+      positionDetails,
+      userAddress,
+      website,
+      contactNumber,
+      facebookLink,
+      twitterLink,
+      linkedinLink,
       schoolName,
-      classroomEndDate: formatDate(expiryDate),
-      schoolAddress,
-      schoolEmail,
-      profileImage: userImage,
-      phone: contactNumber,
-      classroom: '',
-      grade,
+      schoolDegreeName,
+      schoolStartingDate,
+      schoolEndingDate,
+      highSchoolName,
+      highSchoolDegreeName,
+      highSchoolStartingDate,
+      highSchoolEndingDate,
+      universityName,
+      universityDegreeName,
+      universityStartingDate,
+      universityEndingDate,
+      experienceOneName,
+      experienceOnePositionName,
+      experienceOneStartingDate,
+      experienceOneEndingDate,
+      experienceTwoName,
+      experienceTwoPositionName,
+      experienceTwoStartingDate,
+      experienceTwoEndingDate,
+      skills,
+      interests,
       color: iconName,
+      email,
+      dob,
     });
   };
 
@@ -133,6 +142,7 @@ const InputForm = (props) => {
   const [userAddress, setUserAddress] = useState('');
   const [website, setWebsite] = useState('');
   const [contactNumber, setContactNumber] = useState('');
+  const [email, setEmail] = useState('');
 
   const [facebookLink, setFacebookLink] = useState('');
   const [twitterLink, setTwitterLink] = useState('');
@@ -157,14 +167,33 @@ const InputForm = (props) => {
   );
   const [universityEndingDate, setUniversityEndingDate] = useState(new Date());
 
-  const [schoolAddress, setSchoolAddress] = useState('');
-  const [grade, setGrade] = useState('');
+  const [experienceOneName, setexperienceOneName] = useState('');
+  const [experienceOnePositionName, setexperienceOnePositionName] = useState(
+    '',
+  );
+  const [experienceOneStartingDate, setexperienceOneStartingDate] = useState(
+    new Date(),
+  );
+  const [experienceOneEndingDate, setexperienceOneEndingDate] = useState(
+    new Date(),
+  );
+
+  const [experienceTwoName, setexperienceTwoName] = useState('');
+  const [experienceTwoPositionName, setexperienceTwoPositionName] = useState(
+    '',
+  );
+  const [experienceTwoStartingDate, setexperienceTwoStartingDate] = useState(
+    new Date(),
+  );
+  const [experienceTwoEndingDate, setexperienceTwoEndingDate] = useState(
+    new Date(),
+  );
+
+  const [skills, setSkills] = useState('');
+
+  const [interests, setInterests] = useState('');
 
   const [dob, setDOB] = useState(new Date());
-  const [expiryDate, setExpiryDate] = useState(new Date());
-
-  const [details, setDetails] = useState('');
-  const [deadline, setDeadline] = useState(new Date());
   const [error, setError] = useState('');
   const [userImage, setUserImage] = useState(
     'https://icons.iconarchive.com/icons/paomedia/small-n-flat/512/user-male-icon.png',
@@ -235,6 +264,16 @@ const InputForm = (props) => {
 
           <Divider medium />
 
+          <DatePicker
+            title="Date of Birth"
+            value={dob}
+            onChangeDate={(value) => {
+              setDOB(value);
+            }}
+          />
+
+          <Divider medium />
+
           <View>
             <InputPart
               value={positionDetails}
@@ -267,9 +306,9 @@ const InputForm = (props) => {
           <Divider medium />
           <View>
             <InputPart
-              value={name}
+              value={email}
               onChangeText={(text) => {
-                setName(text);
+                setEmail(text);
                 setError('');
               }}
               title="Email Address"
@@ -463,9 +502,9 @@ const InputForm = (props) => {
 
           <View>
             <InputPart
-              value={schoolName}
+              value={universityName}
               onChangeText={(text) => {
-                setSchoolName(text);
+                setUniversityName(text);
                 setError('');
               }}
               title="University Name"
@@ -479,9 +518,9 @@ const InputForm = (props) => {
 
           <View>
             <InputPart
-              value={schoolName}
+              value={universityDegreeName}
               onChangeText={(text) => {
-                setSchoolName(text);
+                setUniversityDregreeName(text);
                 setError('');
               }}
               title="University Degree Name"
@@ -496,18 +535,18 @@ const InputForm = (props) => {
           <View style={styles.dateInput}>
             <DatePicker
               title="Starting Year"
-              value={new Date()}
+              value={universityStartingDate}
               half
               onChangeDate={(value) => {
-                console.log(value);
+                setUniversityStartingDate(value);
               }}
             />
             <DatePicker
               title="Ending Year"
-              value={new Date()}
+              value={universityEndingDate}
               half
               onChangeDate={(value) => {
-                console.log(value);
+                setUniversityEndingDate(value);
               }}
             />
           </View>
@@ -520,9 +559,9 @@ const InputForm = (props) => {
           <Divider divider />
           <View>
             <InputPart
-              value={schoolName}
+              value={experienceOneName}
               onChangeText={(text) => {
-                setSchoolName(text);
+                setexperienceOneName(text);
                 setError('');
               }}
               title="Company Name"
@@ -536,9 +575,9 @@ const InputForm = (props) => {
 
           <View>
             <InputPart
-              value={schoolName}
+              value={experienceOnePositionName}
               onChangeText={(text) => {
-                setSchoolName(text);
+                setexperienceOnePositionName(text);
                 setError('');
               }}
               title="Position Name"
@@ -553,18 +592,18 @@ const InputForm = (props) => {
           <View style={styles.dateInput}>
             <DatePicker
               title="Starting Year"
-              value={new Date()}
+              value={experienceOneStartingDate}
               half
               onChangeDate={(value) => {
-                console.log(value);
+                setexperienceOneStartingDate(value);
               }}
             />
             <DatePicker
               title="Ending Year"
-              value={new Date()}
+              value={experienceOneEndingDate}
               half
               onChangeDate={(value) => {
-                console.log(value);
+                setexperienceOneEndingDate(value);
               }}
             />
           </View>
@@ -577,9 +616,9 @@ const InputForm = (props) => {
           <Divider divider />
           <View>
             <InputPart
-              value={schoolName}
+              value={experienceTwoName}
               onChangeText={(text) => {
-                setSchoolName(text);
+                setexperienceTwoName(text);
                 setError('');
               }}
               title="Company Name"
@@ -593,9 +632,9 @@ const InputForm = (props) => {
 
           <View>
             <InputPart
-              value={schoolName}
+              value={experienceTwoPositionName}
               onChangeText={(text) => {
-                setSchoolName(text);
+                setexperienceTwoPositionName(text);
                 setError('');
               }}
               title="Position Name"
@@ -610,18 +649,18 @@ const InputForm = (props) => {
           <View style={styles.dateInput}>
             <DatePicker
               title="Starting Year"
-              value={new Date()}
+              value={experienceTwoStartingDate}
               half
               onChangeDate={(value) => {
-                console.log(value);
+                setexperienceTwoStartingDate(value);
               }}
             />
             <DatePicker
               title="Ending Year"
-              value={new Date()}
+              value={experienceTwoEndingDate}
               half
               onChangeDate={(value) => {
-                console.log(value);
+                setexperienceTwoEndingDate(value);
               }}
             />
           </View>
@@ -630,9 +669,9 @@ const InputForm = (props) => {
 
           <View>
             <InputPart
-              value={name}
+              value={skills}
               onChangeText={(text) => {
-                setName(text);
+                setSkills(text);
                 setError('');
               }}
               title="Skills"
@@ -645,9 +684,9 @@ const InputForm = (props) => {
 
           <View>
             <InputPart
-              value={name}
+              value={interests}
               onChangeText={(text) => {
-                setName(text);
+                setInterests(text);
                 setError('');
               }}
               title="Interests"
@@ -756,6 +795,14 @@ const styles = ScaledSheet.create({
     width: '90%',
     alignSelf: 'center',
     justifyContent: 'space-between',
+  },
+  leftView: {
+    flex: 1,
+    backgroundColor: 'blue',
+  },
+  rightView: {
+    flex: 3,
+    backgroundColor: 'red',
   },
 });
 
