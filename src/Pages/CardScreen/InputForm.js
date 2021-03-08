@@ -95,45 +95,57 @@ const InputForm = (props) => {
   const [iconName, setIconName] = useState('red');
 
   const createResolution = () => {
-    props.navigation.navigate('CVScreen', {
-      teamId: '11',
-      userId: '11',
-      userImage,
-      name,
-      bio,
-      positionDetails,
-      userAddress,
-      website,
-      contactNumber,
-      facebookLink,
-      twitterLink,
-      linkedinLink,
-      schoolName,
-      schoolDegreeName,
-      schoolStartingDate,
-      schoolEndingDate,
-      highSchoolName,
-      highSchoolDegreeName,
-      highSchoolStartingDate,
-      highSchoolEndingDate,
-      universityName,
-      universityDegreeName,
-      universityStartingDate,
-      universityEndingDate,
-      experienceOneName,
-      experienceOnePositionName,
-      experienceOneStartingDate,
-      experienceOneEndingDate,
-      experienceTwoName,
-      experienceTwoPositionName,
-      experienceTwoStartingDate,
-      experienceTwoEndingDate,
-      skills,
-      interests,
-      color: iconName,
-      email,
-      dob,
-    });
+    if (
+      userImage &&
+      name &&
+      bio &&
+      positionDetails &&
+      userAddress &&
+      website &&
+      contactNumber
+    ) {
+      props.navigation.navigate('CVScreen', {
+        teamId: '11',
+        userId: '11',
+        userImage,
+        name,
+        bio,
+        positionDetails,
+        userAddress,
+        website,
+        contactNumber,
+        facebookLink,
+        twitterLink,
+        linkedinLink,
+        schoolName,
+        schoolDegreeName,
+        schoolStartingDate,
+        schoolEndingDate,
+        highSchoolName,
+        highSchoolDegreeName,
+        highSchoolStartingDate,
+        highSchoolEndingDate,
+        universityName,
+        universityDegreeName,
+        universityStartingDate,
+        universityEndingDate,
+        experienceOneName,
+        experienceOnePositionName,
+        experienceOneStartingDate,
+        experienceOneEndingDate,
+        experienceTwoName,
+        experienceTwoPositionName,
+        experienceTwoStartingDate,
+        experienceTwoEndingDate,
+        skills,
+        interests,
+        color: iconName,
+        email,
+        dob,
+      });
+    } else {
+      alert('Please Enter your basic info');
+    }
   };
 
   const [name, setName] = useState('');
@@ -196,7 +208,7 @@ const InputForm = (props) => {
   const [dob, setDOB] = useState(new Date());
   const [error, setError] = useState('');
   const [userImage, setUserImage] = useState(
-    'https://icons.iconarchive.com/icons/paomedia/small-n-flat/512/user-male-icon.png',
+    'https://iconape.com/wp-content/png_logo_vector/user-circle.png',
   );
   const [schoolImage, setschoolImage] = useState(
     'https://i.pinimg.com/originals/70/34/1f/70341ff61825f30a9bf030c4d4458d2c.jpg',
@@ -730,7 +742,7 @@ const InputForm = (props) => {
           ) : null}
 
           <Button full width onPress={createResolution}>
-            Create ID Card
+            Create Your CV
           </Button>
 
           <Divider medium />

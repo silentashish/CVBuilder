@@ -6,7 +6,7 @@ export const styles = ScaledSheet.create({
     alignItems: 'center',
     // height: '44@ms',
     width: '100%',
-    backgroundColor: '#222831',
+    backgroundColor: '#000000',
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: '6@ms',

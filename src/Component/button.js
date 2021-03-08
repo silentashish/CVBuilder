@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-import {secondaryColor} from '../Utils';
+import {primaryColor, secondaryColor} from '../Utils';
 
 export default (props) => {
   const {onPress, children, id, check, status} = props;
@@ -36,14 +36,15 @@ const _styles = ({full}) => {
       paddingLeft: '20@ms',
       borderColor: secondaryColor,
       borderWidth: 2,
-      minWidth: full ? '100%' : '46%',
-      maxWidth: full ? '100%' : '46%',
+      minWidth: full ? '90%' : '46%',
+      maxWidth: full ? '90%' : '46%',
       paddingTop: '8@ms',
       paddingBottom: '8@ms',
       alignSelf: 'center',
+      backgroundColor: 'white',
     },
     txt: {
-      color: secondaryColor,
+      color: primaryColor,
       fontWeight: 'bold',
       fontSize: '18@ms',
       maxWidth: '100%',
